@@ -56,6 +56,7 @@ func (this *GAuth) CreateSecret(lens ...int) (string, error) {
 		return "", ErrParam
 	}
 	for i := 0; i < length; i++ {
+		rand.Seed(time.Now().UnixNano())
 		secret = append(secret, Table[rand.Intn(len(Table))])
 	}
 	return strings.Join(secret, ""), nil
