@@ -38,7 +38,7 @@ func verifyCode(ga *googleAuthenticator.GAuth, secret, code string) bool {
 }
 
 func main() {
-	for i := 0; i < 100000; i++ {
+	for i := 0; i < 1000; i++ {
 		ga := googleAuthenticator.NewGAuth()
 		//secret := "O3KAB4R2BPDJXJZR"
 		secret, _ := ga.CreateSecret(16)
