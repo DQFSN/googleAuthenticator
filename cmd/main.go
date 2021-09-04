@@ -9,7 +9,7 @@ package main
 
 import (
 	"fmt"
-	"googleAuthenticator"
+	"github.com/DQFSN/googleAuthenticator"
 )
 
 func createSecret(ga *googleAuthenticator.GAuth) string {
@@ -38,14 +38,16 @@ func verifyCode(ga *googleAuthenticator.GAuth, secret, code string) bool {
 }
 
 func main() {
-	ga := googleAuthenticator.NewGAuth()
-	secret := "O3KAB4R2BPDJXJZR"
-	//fmt.Println(ga.CreateSecret(16))
-	code := getCode(ga, secret)
-	fmt.Println(code)
-	fmt.Println(verifyCode(ga, secret,code))
+	for i := 0; i < 100000; i++ {
+		ga := googleAuthenticator.NewGAuth()
+		//secret := "O3KAB4R2BPDJXJZR"
+		secret, _ := ga.CreateSecret(16)
+		fmt.Println(secret)
+		code := getCode(ga, secret)
+		//fmt.Println(code)
+		if !verifyCode(ga, secret, code) {
+			fmt.Println(secret)
+		}
 
-	//for i := 0; i < 10; i++ {
-	//	log.Println(createSecret(ga))
-	//}
+	}
 }
